@@ -1,2 +1,21 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+</div>
+
+<div>
+  <label>Title</label>
+  <lavel>Body</lavel>
+
+  <% @books.each do |book| %>
+
+  <p><%= book.title %></p>
+
+  <p><%= book.body %></p>
+
+  <% end %>
+  
+  <% if @user == current_user %>
+  <%= link_to 'user_edit', edit_user_path %>
+  <% end %>
+</div>

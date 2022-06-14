@@ -1,5 +1,20 @@
 <h2>Books</h2>
 
+<span>Title</span>
+<span>Opinion</span>
+
+<% @books.each do |book| %>
+<div>
+
+  <p><%= image_tag book.user.get_profile_image(80,80) %></p>
+
+  <%= link_to book_path(book.id) do %>
+    <p><%= book.title %></p>
+  <% end %>
+  <p><%= book.body %></p>
+</div>
+<% end %>
+
 <!-- サイドバーのUserinfoの下 -->
 <h2>New Book</h2>
 <%= form_with model: @book do |f| %>

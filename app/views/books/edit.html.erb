@@ -1,0 +1,9 @@
+<h1>Editting book</h1>
+
+<%= form_with model: @book do |f| %>
+<lavel>Title</lavel>
+<%= f.text_field :title %>
+<lavel>Opinion</lavel>
+<%= f.text_area :body %>
+<%= f.submit 'Update' %>
+<% end %>
