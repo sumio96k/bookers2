@@ -1,21 +1,14 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-</div>
+<h2>Books</h2>
 
 <div>
   <label>Title</label>
   <lavel>Body</lavel>
 
   <% @books.each do |book| %>
-
-  <p><%= book.title %></p>
-
-  <p><%= book.body %></p>
-
-  <% end %>
-  
-  <% if @user == current_user %>
-  <%= link_to 'user_edit', edit_user_path %>
+    <p><%= book.title %></p>
+    <p><%= book.body %></p>
   <% end %>
 </div>
+
+
+<%= render 'user_new', user: @user, book: @book %>

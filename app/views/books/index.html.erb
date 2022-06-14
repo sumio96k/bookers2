@@ -7,7 +7,7 @@
 <div>
 
   <p><%= image_tag book.user.get_profile_image(80,80) %></p>
-
+  <%= book.user.name %>
   <%= link_to book_path(book.id) do %>
     <p><%= book.title %></p>
   <% end %>
@@ -15,13 +15,4 @@
 </div>
 <% end %>
 
-<!-- サイドバーのUserinfoの下 -->
-<h2>New Book</h2>
-<%= form_with model: @book do |f| %>
-  <label>Title</label>
-  <%= f.text_field :title %>
-  <label>Opnion</label>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
-<% end %>
-
+<%= render 'users/user_new', user: @user, book: @book %>

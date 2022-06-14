@@ -15,3 +15,5 @@
     <%= link_to 'Destroy', book_path, method: :delete %>
   <% end %>
 </div>
+
+<%= render 'users/user_new', user: @user, book: @book %>
