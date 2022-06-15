@@ -5,7 +5,9 @@
   <lavel>Body</lavel>
 
   <% @books.each do |book| %>
-    <p><%= book.title %></p>
+    <%= link_to book_path(book.id) do %>
+      <p><%= book.title %></p>
+    <% end %>
     <p><%= book.body %></p>
   <% end %>
 </div>
