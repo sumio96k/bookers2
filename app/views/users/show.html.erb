@@ -1,16 +1,29 @@
-<h2>Books</h2>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <%= render 'user_new', user: @user, book: @book %>
 
-<div>
-  <label>Title</label>
-  <lavel>Body</lavel>
-
-  <% @books.each do |book| %>
-    <%= link_to book_path(book.id) do %>
-      <p><%= book.title %></p>
-    <% end %>
-    <p><%= book.body %></p>
-  <% end %>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opninion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <%= link_to book_path(book.id) do %>
+                <td><%= book.title %></td>
+              <% end %>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-
-<%= render 'user_new', user: @user, book: @book %>
