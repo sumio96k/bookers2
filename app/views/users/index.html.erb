@@ -1,16 +1,26 @@
-<h1>Users</h1>
-<p>image</p>
-<p>name</p>
-<div>
-<% @users.each do |user| %>
-
-<%= image_tag user.get_profile_image(80,80) %>
-
-<%= user.name %>
-
-<%= link_to 'show', user_path(user.id) %>
-
-<% end %>
-
-
-<%= render 'user_new', user: @user, book: @book %>
+<div class="container px-5 px-sm-0">
+    <div class="row">
+        <%= render 'user_new', user: @user, book: @book %>
+        <div class="col-md-8 offset-md-1">
+            <h1>Users</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>image</th>
+                        <th>name</th>
+                        <th colspan="3"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @users.each do |user| %>
+                        <tr>
+                            <td><%= image_tag user.get_profile_image(80,80) %></td>
+                            <td><%= user.name %></td>
+                            <td><%= link_to 'show', user_path(user.id) %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
