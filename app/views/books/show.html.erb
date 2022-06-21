@@ -3,6 +3,11 @@
   <%= render 'users/user_new', user: current_user, book: @books %>
 
     <div class="col-md-8 offset-md-1">
+      <% if @comment.errors.any? %>
+        <% @comment.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+      <% end %>
 
       <h1>Book detail</h1>
       <table class="table">

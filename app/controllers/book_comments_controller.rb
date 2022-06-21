@@ -1,15 +1,18 @@
 class BookCommentsController < ApplicationController
 
   def create
-    #[:book_id]はカラムではなくURLのid
-    book = Book.find(params[:book_id])
-    #@commentにuser_idとcurrent_user.idの紐づけと送信されてきたデータを格納するインスタンスの作成
-    @comment = current_user.book_comments.new(book_comments_params)
-    #@commentにBookComentのbook_idと上のbookのid(book.id)を紐づけ
-    @comment.book_id = book.id
-    #saveメソッドで保存
-    @comment.save
+  book = Book.find(params[:book_id])
+  @comment = current_user.book_comments.new(book_comments_params)
+  @comment.book_id = book.id
+  if @comment.save
     redirect_back(fallback_location: root_path)
+  else
+    @book = Book.find(params[:book_id])
+    @books = Book.new
+    @book_comment = BookComment.new
+    render 'books/show'
+  end
+
   end
 
   def destroy
