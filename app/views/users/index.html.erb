@@ -1,9 +1,9 @@
 <div class="container px-5 px-sm-0">
     <div class="row">
-        <%= render 'user_new', user: @user, book: @book %>
+        <!-- サイドバー部分 -->
+        <%= render 'user_new', user: current_user, book: @book %>
 
         <div class="col-md-8 offset-md-1">
-
             <h1>Users</h1>
             <table class="table">
                 <thead>

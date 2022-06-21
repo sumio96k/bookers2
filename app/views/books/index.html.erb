@@ -1,5 +1,6 @@
 <div class="container px-5 px-sm-0">
   <div id="error_explanation">
+    <!-- エラー部分 -->
     <% if @book.errors.any? %>
       <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
       <ul>
@@ -11,11 +12,12 @@
   </div>
 
   <div class="row">
-    <%= render 'users/user_new', user: @user, book: @book %>
+    <!-- サイドバー部分 -->
+    <%= render 'users/user_new', user: current_user, book: @book %>
 
     <div class="col-md-8 offset-md-1">
-
       <h2>Books</h2>
+      
       <table class="table table-hover table-inverse">
         <thead>
           <tr>
@@ -39,6 +41,27 @@
                 <% end %>
               </td>
               <td><%= book.body %></td>
+
+              <!-- いいね機能部分 -->
+              <td>
+              <% if book.favorited_by?(current_user) %>
+                <td>
+                  <%= link_to book_favorites_path(book), method: :delete do %>
+                   ♥<%= book.favorites.count %>
+                  <% end %>
+                </td>
+              <% else %>
+                <td>
+                  <%= link_to book_favorites_path(book), method: :post do %>
+                    ♥<%= book.favorites.count %>
+                  <% end %>
+                </td>
+              <% end %>
+            </td>
+            <!-- ここまで -->
+
+            <td><%= link_to "コメント数:#{book.book_comments.count}", book_path(book)  %></td>
+
             </tr>
           <% end %>
         </tbody>

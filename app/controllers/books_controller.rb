@@ -2,10 +2,15 @@ class BooksController < ApplicationController
 
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  def show
+    @book = Book.find(params[:id])
+    @books = Book.new
+    @book_comment = BookComment.new
+  end
+
   def index
     @books = Book.all
     @book = Book.new
-    @user = User.find(current_user.id)
   end
 
   def create
@@ -16,16 +21,10 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
     else
       @books = Book.all
-      @user = User.find(current_user.id)
       render :index
     end
   end
 
-  def show
-    @book = Book.find(params[:id])
-    @books = Book.new
-    @user = @book.user
-  end
 
   def edit
     @book = Book.find(params[:id])
