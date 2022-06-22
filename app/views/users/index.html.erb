@@ -5,30 +5,8 @@
 
         <div class="col-md-8 offset-md-1">
             <h1>Users</h1>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>image</th>
-                        <th>name</th>
-                        <th colspan="3"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @users.each do |user| %>
-                        <tr>
-                            <td><%= image_tag user.get_profile_image(80,80) %><br>
-                            <%= render 'relationships/count', user: user %>
-                            </td>
-                            <td><%= user.name %></td>
-                            <td>
-                                <%= render 'relationships/follow', user: user %>
-                            </td>
-                            <td><%= link_to 'Show', user_path(user.id) %></td>
-                        </tr>
-                    <% end %>
-                </tbody>
-            </table>
-
+            <!-- メイン部分 -->
+            <%= render 'index', users: @users %>
         </div>
     </div>
 </div>

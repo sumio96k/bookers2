@@ -3,7 +3,7 @@
     <div class="col-md-8 offset-md-1">
       <h1>Followings</h1>
       <h2><%= @user.active_relationships.count %> followings</h2>
-      <%= render 'follow_index', users: @users %>
+      <%= render 'users/index', users: @users %>
     </div>
   </div>
 </div>
