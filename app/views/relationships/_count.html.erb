@@ -1,0 +1,10 @@
+<th>
+    <%= link_to user_followings_path(user.id) do %>
+    <%= user.active_relationships.count %> following
+    <% end %>
+</th>
+<th>
+    <%= link_to user_followers_path(user.id) do %>
+    <%= user.passive_relationships.count %> follower
+    <% end %>
+</th>
