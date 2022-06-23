@@ -1,0 +1,11 @@
+<h2>Results index</h2>
+<% if @model == "user" %>
+  <%= render 'users/index',users: @records %>
+<% else @model == "book" %>
+  <%= render 'books/index',books: @records %>
+<% end %>
+
+
+
+
+
