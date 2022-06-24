@@ -42,14 +42,18 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def search_for(content,method)
-      if method == :perfect
-        User.where(name: content)
-      elsif method == :forward
-        User.where('name LIKE?', content+'%')
-      elsif method == :backward
-        User.where('name LIKE?', '%'+content)
-      end
+  def self.search_for(content,method)
+    if method == "perfect"
+      User.where(name: content)
+    elsif method == "forward"
+      User.where("name LIKE?", content + "%")
+    elsif method == "backward"
+      User.where("name LIKE?", "%" + content)
+    elsif method == "patial"
+      User.where("name LIKE?", "%" + content + "%")
+    else
+      User.all
+    end
   end
 
 

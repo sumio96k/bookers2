@@ -21,7 +21,9 @@
             <td><%= @book.body %></td>
             <td>コメント数:<%= @book.book_comments.count %></td>
             <!-- いいね機能 -->
-            <td><%= render 'favorites/btn', book: @book %></td>
+            <td class="favorite_<%= @book.id %>">
+              <%= render 'favorites/btn', book: @book %>
+            </td>
             <% if @book.user == current_user %>
               <td><%= link_to 'Edit', edit_book_path, class:'btn btn-sm btn-success' %></td>
               <td><%= link_to 'Destroy', book_path, method: :delete, data: {confirm: "本当にけしますか？"}, class:'btn btn-sm btn-danger' %></td>
@@ -30,9 +32,15 @@
       </table>
 
       <!-- コメント部分 -->
-      <%= render 'book_comments/index', book: @book %>
-      <!-- コメント投稿部分 -->
-      <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
+      <tr>
+        <td class="comment_area">
+          <%= render 'book_comments/index', book: @book %>
+        </td>
+        <!-- コメント投稿部分 -->
+        <td>
+          <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
+        </td>
+      </tr>
 
     </div>
   </div>
