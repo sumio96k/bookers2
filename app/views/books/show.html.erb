@@ -6,7 +6,7 @@
 
       <h1>Book detail</h1>
       <table class="table">
-          <tr>
+          <tr id="book_<%= @book.id %>">
             <td>
               <%= link_to user_path(@book.user.id) do %>
                 <%= image_tag @book.user.get_profile_image(100,100) %><br>
@@ -19,7 +19,9 @@
             <% end %>
             </td>
             <td><%= @book.body %></td>
-            <td>コメント数:<%= @book.book_comments.count %></td>
+            <td class="book-comments-counter">
+              <%= render "book_comments/counter", book: @book %>
+            </td>
             <!-- いいね機能 -->
             <td class="favorite_<%= @book.id %>">
               <%= render 'favorites/btn', book: @book %>
@@ -32,15 +34,11 @@
       </table>
 
       <!-- コメント部分 -->
-      <tr>
-        <td class="comment_area">
-          <%= render 'book_comments/index', book: @book %>
-        </td>
+      <div class="book-comments-index">
+        <%= render "book_comments/index", book: @book %>
+      </div>
         <!-- コメント投稿部分 -->
-        <td>
-          <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
-        </td>
-      </tr>
+        <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
 
     </div>
   </div>
