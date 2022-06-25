@@ -19,6 +19,7 @@
             <% end %>
             </td>
             <td><%= @book.body %></td>
+            <%= render 'rates/index', book: @book %>
             <td class="book-comments-counter">
               <%= render "book_comments/counter", book: @book %>
             </td>

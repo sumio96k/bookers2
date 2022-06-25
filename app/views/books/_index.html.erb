@@ -21,6 +21,7 @@
                 <% end %>
               </td>
               <td><%= book.body %></td>
+              <%= render 'rates/index', book: book %>
               <td><%= link_to "コメント数:#{book.book_comments.count}", book_path(book)  %></td>
               <!-- いいね機能部分 -->
               <td class="favorite_<%= book.id %>">
