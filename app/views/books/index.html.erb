@@ -1,4 +1,4 @@
-<div class="container px-5 px-sm-0">
+<div id="books-index"class="container px-5 px-sm-0">
   <!-- エラー部分 -->
   <%= render 'layouts/errors', obj: @book %>
   <div class="row">
@@ -7,8 +7,13 @@
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
+      
+        <%= render 'orders/select' %>
+      
       <!-- メイン部分 -->
-      <%= render 'index', books: @books %>
+      <div class="orders">
+        <%= render 'index', books: @books %>
+      </div>
     </div>
   </div>
 </div>

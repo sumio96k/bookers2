@@ -10,10 +10,26 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    @books = Book.order(created_at: :DESC)
+    orders = params[:orders]
+    if orders == "new"
+      @books = Book.order(created_at: :DESC)
+    elsif orders == "high_rate"
+      @books = Book.order(rate: :DESC)
+    end
     @book = Book.new
     @user = current_user
+
   end
+
+  # def order
+  #   orders = params[:orders]
+  #   if orders == "new"
+  #     @books = Book.order(created_at: :DESC)
+  #   elsif orders == "high_rate"
+  #     @books = Book.order(rate: :DESC)
+  #   end
+  # end
 
   def create
     @book = Book.new(book_params)
@@ -58,5 +74,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     redirect_to books_path unless @book.user == current_user
   end
+
+
 
 end

@@ -27,5 +27,13 @@ class Book < ApplicationRecord
     end
   end
 
+  def self.orders(method)
+    if method == "new"
+      Book.order(created_at: :DESC)
+    elsif method == "high_rate"
+      Book.order(rate: :DESC)
+    end
+  end
+
 
 end
