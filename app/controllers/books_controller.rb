@@ -11,12 +11,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.order(created_at: :DESC)
-    orders = params[:orders]
-    if orders == "new"
-      @books = Book.order(created_at: :DESC)
-    elsif orders == "high_rate"
-      @books = Book.order(rate: :DESC)
-    end
+
     @book = Book.new
     @user = current_user
 

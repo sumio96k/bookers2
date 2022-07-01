@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   end
 
-  get 'order' => 'books#order', as: 'order'
+  get 'order' => 'orders#index', as: 'order'
 
   get 'search' => 'searches#search', as: 'search'
 
