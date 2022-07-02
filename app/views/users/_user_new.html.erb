@@ -42,6 +42,13 @@
       <label for="book_opinion">Opnion</label>
       <%= f.text_area :body, class: 'form-control book_body' %>
     </div>
+
+    <!-- Tag投稿部分 -->
+    <div class="form-group">
+      <label for="book_tag">Tag</label>
+      <%= f.text_field :tag, class: 'form-control book_tag' %>
+    </div>
+
     <!-- 評価部分 -->
     <div class="form-group" id="star">
       <%= f.label :rate,'評価 ', class:'col-form-label' %>

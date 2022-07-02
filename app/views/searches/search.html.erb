@@ -1,9 +1,11 @@
-<h2>Results index</h2>
 <% if @model == "user" %>
+  <h2>Users serch for "<%= "#{@content}" %>"...</h2>
   <%= render 'users/index',users: @records %>
-<% else @model == "book" %>
+<% elsif @model == "book" %>
+  <h2>Books serch for "<%= "#{@content}" %>"...</h2>
   <%= render 'books/index',books: @records %>
 <% end %>
+
 
 
 

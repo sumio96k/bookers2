@@ -49,7 +49,7 @@ class User < ApplicationRecord
       User.where("name LIKE?", content + "%")
     elsif method == "backward"
       User.where("name LIKE?", "%" + content)
-    elsif method == "patial"
+    elsif method == "partial"
       User.where("name LIKE?", "%" + content + "%")
     else
       User.all

@@ -8,6 +8,8 @@ class Book < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
+  validates :tag, presence: true
+  validates :rate, presence: true
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
@@ -20,12 +22,17 @@ class Book < ApplicationRecord
       Book.where("title LIKE ?", content + "%")
     elsif method == "backward"
       Book.where("title LIKE ?", "%" + content)
-    elsif method == "patial"
-      Book.where("name LIKE?", "%" + content + "%")
+    elsif method == "partial"
+      Book.where("title LIKE?", "%" + content + "%")
     else
       Book.all
     end
   end
+
+  def self.tag_search_for(content)
+    Book.where(tag: content)
+  end
+
 
   def self.orders(method)
     if method == "new"

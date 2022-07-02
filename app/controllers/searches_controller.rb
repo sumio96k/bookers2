@@ -12,5 +12,15 @@ class SearchesController < ApplicationController
     end
   end
 
+  def tag_search
+    @content = params[:content]
+    if @content.blank?
+      flash[:notice] = "!キーワードを入力してください!"
+      redirect_back(fallback_location: root_path)
+    else
+      @records = Book.tag_search_for(@content)
+    end
+  end
+
 
 end

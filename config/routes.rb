@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'order' => 'orders#index', as: 'order'
 
   get 'search' => 'searches#search', as: 'search'
+  get 'tag_search' => 'searches#tag_search', as: 'tag_search'
 
   root to: 'homes#top'
   get 'home/about' => 'homes#about', as: 'about'

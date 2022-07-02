@@ -7,9 +7,9 @@
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
-      
-        <%= render 'orders/select' %>
-      
+      <!-- 並び替え機能部分 -->
+      <%= render 'orders/select' %>
+
       <!-- メイン部分 -->
       <div class="orders">
         <%= render 'index', books: @books %>

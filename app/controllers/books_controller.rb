@@ -11,20 +11,10 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.order(created_at: :DESC)
-
     @book = Book.new
     @user = current_user
 
   end
-
-  # def order
-  #   orders = params[:orders]
-  #   if orders == "new"
-  #     @books = Book.order(created_at: :DESC)
-  #   elsif orders == "high_rate"
-  #     @books = Book.order(rate: :DESC)
-  #   end
-  # end
 
   def create
     @book = Book.new(book_params)
@@ -34,6 +24,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
     else
       @books = Book.all
+      @user = current_user
       render :index
     end
   end
@@ -62,7 +53,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :rate)
+    params.require(:book).permit(:title, :body, :rate, :tag)
   end
 
   def correct_user
