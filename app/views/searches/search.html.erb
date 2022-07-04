@@ -4,6 +4,9 @@
 <% elsif @model == "book" %>
   <h2>Books serch for "<%= "#{@content}" %>"...</h2>
   <%= render 'books/index',books: @records %>
+<% elsif @model == "tag" %>
+  <h2>Books serch for "<%= "#{@content}" %>"...</h2>
+  <%= render 'books/index',books: @records %>
 <% end %>
 
 

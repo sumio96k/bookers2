@@ -21,8 +21,10 @@
             <td><%= @book.body %></td>
 
             <td>
-              <%= link_to tag_search_path(content: @book.tag) do %>
-                <%= @book.tag %>
+              <% @book.tags.each do |tag| %>
+                <%= link_to tag_tag_search_path(tag_id: tag.id), method: :get do %>
+                  <%= tag.name %>
+                <% end %>
               <% end %>
             </td>
 

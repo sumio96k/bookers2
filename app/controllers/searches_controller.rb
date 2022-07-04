@@ -9,18 +9,16 @@ class SearchesController < ApplicationController
       @records = User.search_for(@content,@method)
     elsif @model == "book"
       @records = Book.search_for(@content,@method)
+    elsif @model == "tag"
+      @records = Tag.search_for(@content,@method)
     end
   end
 
-  def tag_search
-    @content = params[:content]
-    if @content.blank?
-      flash[:notice] = "!キーワードを入力してください!"
-      redirect_back(fallback_location: root_path)
-    else
-      @records = Book.tag_search_for(@content)
-    end
+  def tags_search
+    content = params[:content]
+    @books = Tag.tag_search_for(content)
   end
+
 
 
 end

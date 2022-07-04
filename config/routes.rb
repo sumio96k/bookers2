@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   get 'order' => 'orders#index', as: 'order'
 
   get 'search' => 'searches#search', as: 'search'
-  get 'tag_search' => 'searches#tag_search', as: 'tag_search'
+  get 'tags_search' => 'books#tags_search', as: 'tags_search'
+
+  resources :tags do
+    get 'tag_search' => 'books#tag_search', as: 'tag_search'
+  end
 
   root to: 'homes#top'
   get 'home/about' => 'homes#about', as: 'about'

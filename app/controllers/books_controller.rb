@@ -4,6 +4,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @book_tag = @book.tags
     @books = Book.new
     @book_comment = BookComment.new
     @user = @book.user
@@ -13,13 +14,21 @@ class BooksController < ApplicationController
     @books = Book.order(created_at: :DESC)
     @book = Book.new
     @user = current_user
+    @tag_list = Tag.all
+  end
 
+  def tag_search
+    @tag = Tag.find(params[:tag_id])
+    @books = @tag.books.all
   end
 
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    #受け取った値を,で区切って配列にする
+    tag_list = params[:book][:name].split(',')
     if @book.save
+      @book.save_tag(tag_list)
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(@book.id)
     else
