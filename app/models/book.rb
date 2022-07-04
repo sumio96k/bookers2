@@ -30,7 +30,7 @@ class Book < ApplicationRecord
     end
   end
 
-  
+
 
   def save_tag(sent_tags)
     #タグが存在していれば、タグの名前を配列としてすべて取得

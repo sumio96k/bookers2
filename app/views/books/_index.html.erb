@@ -24,9 +24,11 @@
               <td><%= book.body %></td>
               <!-- tag部分 -->
               <td>
-                <% book.tags.each do |tags| %>
-                  <%= tags.name %>
+                <% book.tags.each do |tag| %>
+                <%= link_to tag_tag_search_path(tag_id: tag.id), method: :get do %>
+                  <%= tag.name %>
                 <% end %>
+              <% end %>
               </td>
 
               <td><%= book.created_at %></td>

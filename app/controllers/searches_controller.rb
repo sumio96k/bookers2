@@ -10,15 +10,13 @@ class SearchesController < ApplicationController
     elsif @model == "book"
       @records = Book.search_for(@content,@method)
     elsif @model == "tag"
-      @records = Tag.search_for(@content,@method)
+      @records = Tag.search_books_for(@content,@method)
     end
   end
 
   def tags_search
-    content = params[:content]
-    @books = Tag.tag_search_for(content)
+    @tag = Tag.tags_search_for(@content)
   end
-
 
 
 end
