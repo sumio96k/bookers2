@@ -19,6 +19,9 @@
       <tr>
         <th><%= render 'relationships/follow', user: @user %></th>
       </tr>
+      <% if current_user != @user %>
+        <%= link_to 'Begin Chat', chat_path(@user.id) %>
+      <% end %> 
     </tbody>
   </table>
   <div class="row">
@@ -57,17 +60,17 @@
     </div>
 
     <!-- 評価javascript -->
-  <script>
-    $('#star-rate<%= book.id %>').empty();
-    $('#star').raty({
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'book[rate]',
-      half: true,
-    });
-  </script>
+    <script>
+      $('#star-rate<%= book.id %>').empty();
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'book[rate]',
+        half: true,
+      });
+    </script>
 
     <div class="form-group">
       <%= f.submit 'Create Book',class: 'btn btn-success' %>

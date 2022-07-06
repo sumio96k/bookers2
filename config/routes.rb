@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chats/show'
   get 'searches/search'
   devise_for :users
 
@@ -14,14 +15,19 @@ Rails.application.routes.draw do
 
   end
 
+  #並び替え
   get 'order' => 'orders#index', as: 'order'
 
+  #検索機能
   get 'search' => 'searches#search', as: 'search'
   get 'tags_search' => 'searches#tags_search', as: 'tags_search'
 
   resources :tags do
     get 'tag_search' => 'books#tag_search', as: 'tag_search'
   end
+
+  resources :chats, only: [:create]
+  get 'chat/:id' => 'chats#show', as: 'chat'
 
   root to: 'homes#top'
   get 'home/about' => 'homes#about', as: 'about'

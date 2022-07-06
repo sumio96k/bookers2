@@ -17,10 +17,16 @@ class Tag < ApplicationRecord
     end
 
     return tags.inject(init = []) {|result, tag| result + tag.books}
+    # return
+    #   result = (init = [])
+    #   tags.each do |tag|
+    #     result = result + tag.books
+    #   end
 
   end
 
   def self.tags_search_for(content)
+    # Book.joins(:tags).where(name: content)
     Tag.where(name: content)
   end
 
