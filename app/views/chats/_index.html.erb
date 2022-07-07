@@ -1,0 +1,19 @@
+<% chats.each do |chat| %>
+  <% if chat.user_id == current_user.id %>
+  <tbody>
+    <tr>
+      <th>
+        <p><%= chat.message %></p>
+      </th>
+      <th></th>
+    </tr>
+  <% else %>
+  <tr>
+    <th>
+      <p><%= chat.message %></p>
+    </th>
+    <th></th>
+  </tr>
+</tbody>
+  <% end %>
+<% end %>
