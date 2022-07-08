@@ -1,6 +1,2 @@
 <h2>Books serch for </h2>
-<% @records.each do |t| %>
-<%= t.name %>
-<% end %>
-
-<%= @records %>
+<%= render 'books/index',books: @records %>

@@ -16,6 +16,7 @@ class SearchesController < ApplicationController
   end
 
   def tags_search
+    @content = params[:content]
     @records = Tag.tags_search_for(@content)
   end
 

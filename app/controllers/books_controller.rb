@@ -14,8 +14,9 @@ class BooksController < ApplicationController
     # @books = Book.order(created_at: :DESC)
     @book = Book.new
     @user = current_user
-    
+
     @tag_list = Tag.all
+
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
     @books = Book.includes(:favorited_users).
@@ -26,10 +27,10 @@ class BooksController < ApplicationController
       }
   end
 
-  def tag_search
-    @tag = Tag.find(params[:tag_id])
-    @books = @tag.books.all
-  end
+  # def tag_search
+  #   @tag = Tag.find(params[:tag_id])
+  #   @books = @tag.books.all
+  # end
 
   def create
     @book = Book.new(book_params)
