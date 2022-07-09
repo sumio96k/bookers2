@@ -28,6 +28,8 @@
               <% end %>
             </td>
 
+            <td class="view-count">閲覧数: <%= @book_detail.view_counts.count %></td>
+
 
             <!-- 評価部分 -->
             <%= render 'rates/index', book: @book %>

@@ -8,6 +8,11 @@ class BooksController < ApplicationController
     @books = Book.new
     @book_comment = BookComment.new
     @user = @book.user
+    #閲覧数
+    @book_detail = Book.find(params[:id])
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book_detail.id)
+      current_user.view_counts.create(book_id: @book_detail.id)
+    end
   end
 
   def index
@@ -19,17 +24,21 @@ class BooksController < ApplicationController
 
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
-    @books = Book.includes(:favorited_users).
-    # sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
-    sort {|a,b|
-        b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
-        a.favorited_users.includes(:favorites).where(created_at: from...to).size
-      }
+    @books = Book.all.sort {|a,b|
+      b.favorites.where(created_at: from...to).size <=>
+      a.favorites.where(created_at: from...to).size
+    }
+    # @books = Book.includes(:favorited_users).
+    # # sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    # sort {|a,b|
+    #     b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
+    #     a.favorited_users.includes(:favorites).where(created_at: from...to).size
+    #   }
   end
 
   # def tag_search
   #   @tag = Tag.find(params[:tag_id])
-  #   @books = @tag.books.all
+  #   @books = Book.search(params[:name])
   # end
 
   def create
@@ -72,7 +81,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :rate, :tag, tag_ids: [])
+    params.require(:book).permit(:title, :body, :rate, :tag)
   end
 
   def correct_user

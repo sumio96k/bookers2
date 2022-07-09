@@ -31,6 +31,8 @@
               <% end %>
               </td>
 
+              <td class="view-count">閲覧数: <%= book.view_counts.count %></td>
+
               <td><%= book.created_at %></td>
               <%= render 'rates/index', book: book %>
               <td><%= link_to "コメント数:#{book.book_comments.count}", book_path(book)  %></td>

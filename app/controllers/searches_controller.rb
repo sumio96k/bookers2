@@ -20,5 +20,4 @@ class SearchesController < ApplicationController
     @records = Tag.tags_search_for(@content)
   end
 
-
 end

@@ -24,6 +24,9 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :rooms, through: :user_rooms
 
+  #閲覧数
+  has_many :view_counts, dependent: :destroy
+
   has_one_attached :profile_image
 
   validates :name, uniqueness: true, length: { minimum: 2, maximum: 20 }
