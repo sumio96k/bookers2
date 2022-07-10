@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :favorited_books, through: :favorites, source: :book
 
   has_many :book_comments, dependent: :destroy
+
   # 自分がフォローする（与フォロー）側の関係性
   has_many :active_relationships, class_name: "Relationship",foreign_key: :follower_id, dependent: :destroy
   # 与フォロー関係を通じて参照→(has_many)自分がフォローしている人
@@ -64,6 +65,13 @@ class User < ApplicationRecord
       User.where("name LIKE?", "%" + content + "%")
     else
       User.all
+    end
+  end
+
+  def self.guest
+    find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = 'guestuser'
     end
   end
 
