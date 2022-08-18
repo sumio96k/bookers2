@@ -11,6 +11,7 @@
         <tbody>
           <% books.each do |book| %>
             <tr>
+              <td><%= book.id %></td>
               <td>
                 <%= link_to (book.user) do %>
                   <%= image_tag book.user.get_profile_image(80,80) %>
@@ -31,6 +32,12 @@
               <% end %>
               </td>
 
+              <td>
+                <% if book.category_id != nil %>
+                <%= book.category.name %>
+                <% end %>
+              </td>
+
               <td class="view-count">閲覧数: <%= book.view_counts.count %></td>
 
               <td><%= book.created_at %></td>
@@ -42,5 +49,7 @@
               </td>
             </tr>
           <% end %>
+
+
         </tbody>
       </table>

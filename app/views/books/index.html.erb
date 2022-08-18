@@ -9,10 +9,9 @@
       <h2>Books</h2>
       <!-- 並び替え機能部分 -->
       <%= render 'orders/select' %>
-
       <!-- メイン部分 -->
       <div class="orders">
-        <%= render 'index', books: @books %>
+        <%= render 'index', books: @books, category: @category %>
       </div>
     </div>
   </div>

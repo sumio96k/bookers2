@@ -1,5 +1,23 @@
 <%= form_with(model:[book, book_comment], local: false) do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100 comment-textarea" %>
+  <!-- 評価部分 -->
+    <div class="form-group" id="star">
+      <%= f.label :rate,'評価 ', class:'col-form-label' %>
+      <%= f.hidden_field :rate, id: :review_star %>
+    </div>
+
+    <!-- 評価javascript -->
+    <script>
+      $('#star-rate<%= book_comment.id %>').empty();
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'book_comment[rate]',
+        half: true,
+      });
+    </script>
   <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 <% end %>
 

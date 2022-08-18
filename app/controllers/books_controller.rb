@@ -19,7 +19,7 @@ class BooksController < ApplicationController
     # @books = Book.order(created_at: :DESC)
     @book = Book.new
     @user = current_user
-
+    @category = Category.all
     @tag_list = Tag.all
 
     to = Time.current.at_end_of_day
@@ -81,7 +81,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :rate, :tag)
+    params.require(:book).permit(:title, :body, :rate, :tag, :category_id)
   end
 
   def correct_user

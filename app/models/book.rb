@@ -1,5 +1,8 @@
 class Book < ApplicationRecord
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+
   has_one_attached :image
 
   belongs_to :user
@@ -11,13 +14,15 @@ class Book < ApplicationRecord
   #回答例
   has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
   # has_many :favorited_users, through: :favorites, source: :user
-  
+
   #閲覧数
   has_many :view_counts, dependent: :destroy
 
+
+
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
-  validates :rate, presence: true
+  # validates :rate, presence: true
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

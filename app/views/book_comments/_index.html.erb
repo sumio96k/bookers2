@@ -10,6 +10,19 @@
         <% end %>
       </td>
       <td><%= book_comment.comment %></td>
+      <td id="star-rate<%= book_comment.id%>"></td>
+      <script>
+        $('#star-rate<%= book_comment.id %>').empty();
+        $('#star-rate<%= book_comment.id%>').raty({
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half      : true,
+          readOnly: true,
+          score: <%= book_comment.rate %>,
+        });
+      </script>
       <td>
         <% if book_comment.user == current_user %>
           <%= link_to 'Destroy', book_book_comment_path(book, book_comment),

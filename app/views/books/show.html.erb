@@ -28,11 +28,11 @@
               <% end %>
             </td>
 
+            <td><%= @book.category.name %></td>
+
             <td class="view-count">閲覧数: <%= @book_detail.view_counts.count %></td>
 
 
-            <!-- 評価部分 -->
-            <%= render 'rates/index', book: @book %>
 
             <!-- コメント部分 -->
             <td class="book-comments-counter">
@@ -43,7 +43,7 @@
             <td class="favorite_<%= @book.id %>">
               <%= render 'favorites/btn', book: @book %>
             </td>
-            <% if @book.user == current_user %>
+            <% if @book.user == current_user || current_user.admin? == true %>
               <td><%= link_to 'Edit', edit_book_path, class:'btn btn-sm btn-success' %></td>
               <td><%= link_to 'Destroy', book_path, method: :delete, data: {confirm: "本当にけしますか？"}, class:'btn btn-sm btn-danger' %></td>
             <% end %>
